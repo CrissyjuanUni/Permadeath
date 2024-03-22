@@ -106,7 +106,7 @@ public class PlayerListener implements Listener {
 
             player.sendTitle(ServerMessageTitle, ServerMessageSubtitle.replace("%player%", victim), 20, 20 * 5, 20);
             if (Objects.requireNonNull(Main.instance.getConfig().getBoolean("Toggles.DefaultDeathSoundsEnabled")))
-                player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATH, Float.MAX_VALUE, -0.1f);
+                player.playSound(player.getLocation(), Sound.ENTITY_BLAZE_DEATh, Float.MAX_VALUE, -0.1f);
             player.playSound(player.getLocation(), "pdc_muerte", Float.MAX_VALUE, 1.0F);
         }
 
@@ -498,32 +498,6 @@ public class PlayerListener implements Listener {
 
         if (Main.instance.getShulkerEvent().isRunning()) {
             Main.instance.getShulkerEvent().addPlayer(e.getPlayer());
-        }
-
-        Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
-            @Override
-            public void run() {
-                if (!player.isOnline()) return;
-
-                player.sendMessage(TextUtils.format("&e&m-------------------------------------------"));
-                player.sendMessage(TextUtils.format("        &c&lPERMA&7&lDEATH"));
-                player.sendMessage(TextUtils.format(" "));
-                player.sendMessage(TextUtils.format("&b&l - Servidor de Discord con soporte del Desarrollador: -"));
-                player.sendMessage(TextUtils.format("&7Se ofrece soporte en caso de problemas"));
-                player.sendMessage(TextUtils.format(" "));
-                player.sendMessage(TextUtils.format("&e&nInvitación a Discord&r&7 (soporte, noticias y proyectos):"));
-                player.sendMessage(TextUtils.format("&9" + Utils.DISCORD_LINK));
-                player.sendMessage(TextUtils.format("&e&m-------------------------------------------"));
-                if (!Main.optifineItemsEnabled())
-                    player.sendMessage(TextUtils.format("&cRecuerda aceptar los paquetes de Recursos para ver los ítems y texturas personalizadas."));
-                player.sendMessage(Main.prefix + TextUtils.format("&eEjecuta el comando &f&l/pdc &r&epara más información."));
-
-                if (!player.hasPlayedBefore()) {
-                    player.sendTitle(TextUtils.format("&c&lPERMA&7&lDEATH"), TextUtils.format("&7Desarrollador: &b@SebazCRC"), 1, 20 * 5, 1);
-                    player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100.0F, 100.0F);
-                }
-            }
-        }, 20 * 15);
 
         Bukkit.getScheduler().runTaskLater(Main.instance, new Runnable() {
             @Override
@@ -531,7 +505,6 @@ public class PlayerListener implements Listener {
                 if (player == null) return;
                 if (!player.isOnline()) return;
                 if (!player.hasPlayedBefore()) {
-                    player.sendTitle(TextUtils.format("&c&lPERMA&7&lDEATH"), TextUtils.format("&7Discord: &9https://discord.gg/8evPbuxPke"), 1, 20 * 5, 1);
                     player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 100.0F, 100.0F);
                 }
 
